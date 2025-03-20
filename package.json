@@ -17,14 +17,25 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "typeorm-cli": "NODE_OPTIONS=\"--require tsconfig-paths/register\" typeorm-ts-node-commonjs",
+    "task:migration:create": "npm run typeorm-cli -- migration:create ./src/data/migrations/$NAME",
+    "task:migration:generate": "npm run typeorm-cli -- migration:generate ./src/data/migrations/$NAME -d ./src/typeorm.config.ts",
+    "task:migration:run": "npm run typeorm-cli -- migration:run -d ./src/typeorm.config.ts",
+    "task:migration:revert": "npm run typeorm-cli -- migration:revert -d ./src/typeorm.config.ts",
+    "task:migration:show": "npm run typeorm-cli -- migration:show -d ./src/typeorm.config.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
+    "@nestjs/config": "^4.0.1",
     "@nestjs/core": "^11.0.1",
     "@nestjs/platform-express": "^11.0.1",
+    "@nestjs/typeorm": "^11.0.0",
+    "dotenv": "^16.4.7",
     "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "typeorm": "^0.3.21",
+    "typeorm-naming-strategies": "^4.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
