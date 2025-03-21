@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { IngestionService } from './ingestion.service';
 import { IngestionController } from './ingestion.controller';
-import { KafkaService } from 'src/kafka/kafka.service';
+import { KafkaService } from 'src/kafka';
 
 @Module({
   controllers: [IngestionController],
