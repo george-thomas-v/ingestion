@@ -13,10 +13,10 @@ export class KafkaService implements OnModuleInit, OnModuleDestroy {
   private consumer = this.kafka.consumer({ groupId: 'injestion-service' });
 
   async onModuleInit() {
-    this.consumer.subscribe({ topics: ['start-processing'] });
+    await this.consumer.subscribe({ topics: ['start-processing'] });
     await this.producer.connect();
     await this.consumer.connect();
-    this.consumer.run({
+    await this.consumer.run({
       eachMessage: async ({ message }) => {
         console.log(`Received message: ${message}`);
       },
